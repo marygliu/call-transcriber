@@ -1,0 +1,19 @@
+# Compiled Swift helper (rebuilt by install.sh)
+recorder/mic-owner
+mic-owner
+
+# Runtime / debug artifacts
+*.log
+*.marker
+callrec.log
+
+# Secrets — never commit
+.env
+*.key
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
