@@ -99,7 +99,10 @@ Edit the `CONFIG` block at the top of `~/.hammerspoon/call_recorder.lua`, then p
 
 ## Enriching transcripts (optional, via Claude Code)
 
-The `enrich-transcripts/` folder is a [Claude Code](https://claude.com/claude-code) skill. Copy it into your Claude skills directory (or run the scripts directly). It adds an `## AI Summary` and frontmatter to each transcript.
+The `enrich-transcripts/` folder is a [Claude Code](https://claude.com/claude-code) skill. Copy it into your Claude skills directory (or run the scripts directly). It adds an `## AI Summary` and frontmatter to each transcript, and bundles two helpers:
+
+- **`vtt_to_md.py`** — convert a Teams/WebVTT caption export (`.vtt`) into a standardized transcript `.md`, so Teams meetings flow through the same pipeline.
+- **`purge_audio.py`** — delete a `.m4a` once its transcript is safely summarized (privacy-first; only relevant if you set `keepAudio = true`).
 
 Run the summary step standalone (no Claude Code required):
 
@@ -110,7 +113,7 @@ python3 enrich-transcripts/scripts/summarize.py --dir "<your transcript folder>"
 python3 enrich-transcripts/scripts/summarize.py --dir "<your transcript folder>"                   # apply
 ```
 
-Set `--model claude-sonnet-5` for a cheaper/faster model than the default. See [`enrich-transcripts/SKILL.md`](enrich-transcripts/SKILL.md) for the full workflow, including the optional calendar-matching step.
+Set `--model claude-sonnet-5` for a cheaper/faster model than the default. See [`enrich-transcripts/SKILL.md`](enrich-transcripts/SKILL.md) for the full workflow, including `.vtt` conversion, audio purge, and the optional calendar-matching step.
 
 ---
 
@@ -133,7 +136,7 @@ call-transcriber/
 │   └── mic-owner.swift            per-process mic-owner helper (compiled by install.sh)
 └── enrich-transcripts/            optional Claude Code skill
     ├── SKILL.md
-    └── scripts/{summarize.py, rename_audio.py}
+    └── scripts/{summarize.py, vtt_to_md.py, purge_audio.py}
 ```
 
 ## License
