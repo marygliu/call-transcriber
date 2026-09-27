@@ -55,9 +55,7 @@ call app grabs the mic ──► panel: "Record this call?" [Record] [Ignore]
 ## Install
 
 ```bash
-git clone <this repo>
-cd call-transcriber
-./install.sh
+git clone https://github.com/marygliu/call-transcriber.git && cd call-transcriber && ./install.sh
 ```
 
 The installer will:
